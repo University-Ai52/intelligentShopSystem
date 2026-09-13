@@ -1,10 +1,19 @@
-import{Router} from "express";
-import{z} from "zod";
-import User from "../models/User.js";
-import { signToken } from "../lib/token.js";
-import { auth } from "../middleware/auth.js";
-import { validate } from "../middleware/validate.js";
-import { ah } from "../middleware/errorHandler.js";
+// import{Router} from "express";
+// import{z} from "zod";
+// import User from "../models/User.js";
+// import { signToken } from "../lib/token.js";
+// import { auth } from "../middleware/auth.js";
+// import { validate } from "../middleware/validate.js";
+// import { ah } from "../middleware/errorHandler.js";
+const Router = require("express")
+const z = require("zod")
+const User = require("../models/user")
+const signToken = require("../lib/token")
+const auth = require("../middleware/auth")
+const validate = require("../middleware/validate")
+const ah = require("../middleware/errorHandler")
+
+
 
 const router=Router();
 const registerSchema=z.object({
@@ -43,4 +52,4 @@ router.get("/me",auth,(req,res)=>{
     res.json(req.user.toJSON());
 });
 
-export default router;
+module.exports =  router;

@@ -21,7 +21,7 @@ An intelligent e-commerce platform built with the **MEAN Stack** (MongoDB, Expre
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
-- [Team & Module Ownership](#-team--module-ownership)
+- [Team &amp; Module Ownership](#-team--module-ownership)
 - [Project Status](#-project-status)
 - [Roadmap](#-roadmap)
 - [Getting Started](#-getting-started)
@@ -40,18 +40,19 @@ The system is built module by module: every core domain entity (`User`, `Product
 
 ## 👥 Actors
 
-| Actor | Responsibilities |
-|---|---|
-| **Customer** | Sign in, search & compare products, get recommendations, place orders, make payments, track order status |
-| **Admin** | Manage system data, generate reports, restock & manage inventory |
-| **Supplier** | Provide product information, receive and fulfill restock orders |
-| **Payment Gateway** | Authorize payments, send payment confirmations |
+| Actor                     | Responsibilities                                                                                         |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Customer**        | Sign in, search & compare products, get recommendations, place orders, make payments, track order status |
+| **Admin**           | Manage system data, generate reports, restock & manage inventory                                         |
+| **Supplier**        | Provide product information, receive and fulfill restock orders                                          |
+| **Payment Gateway** | Authorize payments, send payment confirmations                                                           |
 
 ---
 
 ## ✨ Features
 
 ### Functional Requirements
+
 - User registration and login
 - Browse products
 - Smart recommendations system
@@ -66,6 +67,7 @@ The system is built module by module: every core domain entity (`User`, `Product
 - Smart offers and discounts
 
 ### Non-Functional Requirements
+
 - **Performance** — handle high traffic without slowdowns
 - **Usability** — simple, intuitive interface
 - **Security** — protect data privacy
@@ -76,12 +78,12 @@ The system is built module by module: every core domain entity (`User`, `Product
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Database | MongoDB |
-| Backend | Node.js, Express.js |
-| Frontend | Angular |
-| Auth | Token-based (JWT) session handling |
+| Layer    | Technology                                                                |
+| -------- | ------------------------------------------------------------------------- |
+| Database | MongoDB                                                                   |
+| Backend  | Node.js, Express.js                                                       |
+| Frontend | Angular                                                                   |
+| Auth     | Token-based (JWT) session handling                                        |
 | Payments | Payment Gateway integration (Credit/Debit Card, PayPal, Cash on Delivery) |
 
 ---
@@ -124,13 +126,13 @@ intelligentShopSystem/
 
 Each member owns one module end-to-end across the Backend and the matching Angular Frontend, plus shared work highlighted below.
 
-| Member | Backend | Frontend |
-|---|---|---|
-| **Youssef Kareem Abbas** | Authentication & User | Authentication & User · shared **Home Page** build |
-| **Michael Raafat Kamel** | Product | Product |
-| **Mohamed Abdelmoneim** | Cart & Payment | Cart & Payment · shared **Home Page** build |
-| **Ibrahim Mohamed Ibrahim Ahmed** | Category & Orders · Code Review on Cart & Payment (Backend) | — |
-| **Filopateer Ernest** | — | Category & Orders |
+| Member                                  | Backend                                                      | Frontend                                                 |
+| --------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
+| **Youssef Kareem Abbas**          | Authentication & User                                        | Authentication & User · shared**Home Page** build |
+| **Michael Raafat Kamel**          | Product                                                      | Product                                                  |
+| **Mohamed Abdelmoneim**           | Cart & Payment                                               | Cart & Payment · shared**Home Page** build        |
+| **Ibrahim Mohamed Ibrahim Ahmed** | Category & Orders · Code Review on Cart & Payment (Backend) | —                                                       |
+| **Filopateer Ernest**             | —                                                           | Category & Orders                                        |
 
 **Module details:**
 
@@ -139,6 +141,7 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 
 - Backend: Register, Login, Logout with token-based session handling; User Profile module (view/update personal data & addresses); role separation between Admin / Customer / Supplier.
 - Frontend: Login page, Register page, Profile page; shared Home Page build with Mohamed Abdelmoneim.
+
 </details>
 
 <details>
@@ -146,6 +149,7 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 
 - Backend: Product Catalog API (list, filter, category browsing); core product data management.
 - Frontend: Product List, Product Detail, Product Search pages.
+
 </details>
 
 <details>
@@ -153,6 +157,7 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 
 - Backend: Shopping Cart API (add/remove/update items, totals); Payment module (authorize, capture, refund) via a Payment Gateway; support for multiple payment methods.
 - Frontend: Cart page, Checkout/Payment Form, Order Confirmation page; shared Home Page build with Youssef Kareem Abbas.
+
 </details>
 
 <details>
@@ -161,12 +166,14 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 - Backend: Product categorization linked to the catalog; order creation and order status workflow (Pending → Confirmed → Shipped → Delivered / Cancelled); order tracking.
 - Also performs a Code Review of the Cart & Payment backend together with Mohamed Abdelmoneim.
 - No frontend responsibility on this module.
+
 </details>
 
 <details>
 <summary><strong>Category & Orders (Frontend) — Filopateer Ernest</strong></summary>
 
 - Frontend: Category browsing pages; Order Management and Order Tracking pages.
+
 </details>
 
 ---
@@ -174,6 +181,7 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 ## 📊 Project Status
 
 **✅ Completed**
+
 - Backend for **Authentication & User**
 - Backend for **Product**
 - Backend for **Cart & Payment** (reviewed)
@@ -181,6 +189,7 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 - Base repository structure (`back/` and `front/`)
 
 **🚧 In Progress**
+
 - Frontend build-out for all modules above
 - Shared Home Page (Mohamed Abdelmoneim & Youssef Kareem Abbas)
 
@@ -200,6 +209,7 @@ Each member owns one module end-to-end across the Backend and the matching Angul
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (LTS recommended)
 - [MongoDB](https://www.mongodb.com/) (local instance or Atlas cluster)
 - [Angular CLI](https://angular.dev/tools/cli)
@@ -213,6 +223,7 @@ cd intelligentShopSystem
 ```
 
 **Backend setup**
+
 ```bash
 cd back
 npm install
@@ -220,6 +231,7 @@ npm run dev
 ```
 
 **Frontend setup**
+
 ```bash
 cd front
 npm install
