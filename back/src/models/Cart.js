@@ -1,23 +1,5 @@
 const mongoose = require("mongoose")
 
-const cartItemSchema = new mongoose.Schema({
-    card: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "card",
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true,
-        min: [1, "quantity must be at least 1"]
-    },
-    priceAtAdd: {
-        type: Number,
-        required: true,
-        min: [0, "price cannot be negative"]
-    }
-}, { _id: false })
-
 const cartSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -25,10 +7,24 @@ const cartSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    items: {
-        type: [cartItemSchema],
-        default: []
-    }
+    items: [{
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product",
+            required: true,
+            unique:true
+        },
+        quantity: {
+            type: Number,
+            required: true,
+            min: [1, "quantity is integer positive"]
+        },
+        priceAtAdd: {
+            type: Number,
+            required: true,
+            min: [0, "price cannot be negative"]
+        }
+    }]
 }, {
     timestamps: true,
     versionKey: false
