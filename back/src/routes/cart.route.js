@@ -1,11 +1,11 @@
 const cardRouter = require("express").Router()
 const { getCart, addItem, updateItem, removeItem, clearCart } = require("../controllers/cart.controller")
-const { protect } = require("../middleware/auth")
+const {  auth } = require("../middleware/auth")
 
-cardRouter.get("/", protect, getCart)
-cardRouter.post("/items", protect, addItem)
-cardRouter.patch("/items/:productId", protect,updateItem)
-cardRouter.delete("/items/:productId", protect, removeItem)
-cardRouter.delete("/", protect, clearCart)
+cardRouter.get("/", auth, getCart)
+cardRouter.post("/items", auth, addItem)
+cardRouter.patch("/items/:productId", auth,updateItem)
+cardRouter.delete("/items/:productId", auth, removeItem)
+cardRouter.delete("/", auth, clearCart)
 
 module.exports = cardRouter

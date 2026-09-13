@@ -1,5 +1,5 @@
 const Cart = require("../models/Cart")
-const Product = require("../models/Product")
+const Product = require("../models/Product.js")
 const catchAsync = require("../utils/catchAsync")
 
 const getCart = userId => Cart.findOne({ user: userId }).populate(
@@ -68,12 +68,12 @@ exports.addItem = catchAsync(async (req, res) => {
     res.status(201).json({ success: true, data:  await getCart(cart.user) })
 })
 
-exports.updateItem = async (req, res) => {
+exports.updateItem = catchAsync( async (req, res) => {
     addCart(req.user._id)
     const quantity = Number(req.body.quantity)
-    // if (!Number.isInteger(quantity) || quantity < 1) {
-    //     return res.status(400).json({ success: false, message: "quantity must be a positive integer" })
-    // }
+    if (!Number.isInteger(quantity) || quantity < 1) {
+        return res.status(400).json({ success: false, message: "quantity must be a positive integer" })
+    }
 
     const product = await Product.findOne({ _id: req.params.productId, isActive: true })
 
@@ -96,13 +96,11 @@ exports.updateItem = async (req, res) => {
         returnDocument: true,
         runValidators: true
     })
-    // item.quantity = quantity
-    // await cart.save()
     res.json({ success: true, data: await getCart(cart.user) })
 
-}
+})
 
-exports.removeItem = async (req, res) => {
+exports.removeItem = catchAsync( async (req, res) => {
     const cart = await Cart.findOne({ user: req.user._id })
     if (!cart) return res.status(404).json({ success: false, message: "Cart not found" })
 
@@ -112,9 +110,9 @@ exports.removeItem = async (req, res) => {
 
     await cart.save()
     res.json({ success: true, data: "Item deleted from card successfully"})
-}
+})
 
-exports.clearCart = async (req, res) => {
+exports.clearCart = catchAsync( async (req, res) => {
     await Cart.findOneAndUpdate({ user: req.user._id }, { items: [] })
     res.json({ success: true, message: "Cart cleared successfully" })
-}
+})

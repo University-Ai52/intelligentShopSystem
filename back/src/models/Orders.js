@@ -7,14 +7,14 @@ const ordersSchema = new mongoose.Schema({
     unique: true                
   },
   user: {
-    type: ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
   items: [
     {
       product: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Product",
         required: true
       },
