@@ -1,16 +1,13 @@
-const express = require("express")
+const express = require("express");
+const morgan = require("morgan");
+const productRoutes = require("./routes/product.routes");
 
-const morgan = require("morgan")
-
-
-
-const app = express()
+const app = express();
 
 app.use(express.json())
-
 app.use(morgan("dev"))
 
-// app.use("/products",route.get())
+app.use("/api/v1/products", productRoutes);
 
 
-module.exports = app 
+module.exports = app;
