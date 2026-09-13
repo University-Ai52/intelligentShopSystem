@@ -1,5 +1,7 @@
 const express = require("express");
+
 const morgan = require("morgan");
+
 const productRoutes = require("./routes/product.routes");
 
 const app = express();
@@ -9,5 +11,6 @@ app.use(morgan("dev"))
 
 app.use("/api/v1/products", productRoutes);
 
+app.use("/app/v1/cart",cartRouter);
 
 module.exports = app;
