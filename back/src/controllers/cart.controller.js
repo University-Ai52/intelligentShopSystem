@@ -1,5 +1,5 @@
 const Cart = require("../models/Cart")
-const Product = require("../models/Product.js")
+const Product = require("../models/product.js")
 const catchAsync = require("../utils/catchAsync")
 
 const getCart = userId => Cart.findOne({ user: userId }).populate(

@@ -1,7 +1,7 @@
-import{verifyToken} from "../lib/token.js";
-import User from "../models/User.js";
+const {verifyToken } = require("../lib/token.js")
+const User = require("../models/user.js")
 
-export async function auth(req,res,next){
+exports.auth =  async function (req,res,next){
     const header=req.headers.authorization||"";
     const token=header.startsWith("Bearer ")?header.slice(7):null;
     if(!token) return res.status(401).json({message:"Authentication required"});
@@ -16,7 +16,7 @@ export async function auth(req,res,next){
     }
 }
 
-export function requireAdmin(req,res,next){
+exports.requireAdmin = function (req,res,next){
     if(req.user?.role!=="admin") return res.status(403).json({message:"Admin only"});
     next();
 }

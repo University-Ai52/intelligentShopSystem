@@ -1,15 +1,17 @@
-import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+// import mongoose from "mongoose";
+const mongoose = require("mongoose")
+// import bcrypt from "bcryptjs";
+const bcrypt = require("bcryptjs")
 
 const userSchema = new mongoose.Schema(
 {
-    email:{type:string,required:true,unique:true,lowercase:true,trim:true},
-    password:{type:string,required:true,minlength:6,select:false},
-    firstName:{type:string,required:true,trim:true},
-    lastName:{type:string,required:true,trim:true},
-    role:{type:string,enum:["customer","admin"],default:"customer"},
-    isActive:{type:boolean,default:true},
-    phone:{type:string,trim:true},
+    email:{type:String,required:true,unique:true,lowercase:true,trim:true},
+    password:{type:String,required:true,minlength:6,select:false},
+    firstName:{type:String,required:true,trim:true},
+    lastName:{type:String,required:true,trim:true},
+    role:{type:String,enum:["customer","admin"],default:"customer"},
+    isActive:{type:Boolean,default:true},
+    phone:{type:String,trim:true},
 },
 {timestamps:true}
 );
@@ -31,4 +33,4 @@ userSchema.set("toJSON",{
     },
 });
 
-export default mongoose.model("User",userSchema);
+module.exports =  mongoose.model("User",userSchema);

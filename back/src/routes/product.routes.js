@@ -7,6 +7,7 @@ const {
     updateProduct,
     deleteProduct
 } = require("../controllers/products.controllers.js");
+const { requireAdmin } = require("../middleware/auth.js");
 
 router.get("/products", getProducts);
 
