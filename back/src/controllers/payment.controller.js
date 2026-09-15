@@ -2,7 +2,7 @@ require("dotenv").config()
 const stripe = require("../config/stripe");
 const mongoose = require("mongoose");
 
-const Order = require("../models/Order");
+const Order = require("../models/Orders");
 
 exports.createPaymentIntent = async (req, res) => {
     try {
