@@ -3,6 +3,7 @@ const stripe = require("../config/stripe");
 const mongoose = require("mongoose");
 
 const Order = require("../models/Orders");
+const Product = require("../models/product");
 
 exports.createPaymentIntent = async (req, res) => {
     try {
@@ -132,7 +133,7 @@ const handlePaymentSuccess = async (paymentIntent) => {
 
     const orderId = paymentIntent.metadata.orderId;
 
-    const order = await ordersModel.findById(orderId);
+    const order = await Order.findById(orderId);
 
     if (!order) {
         throw new Error("Order not found");
@@ -151,7 +152,7 @@ const handlePaymentSuccess = async (paymentIntent) => {
     // Reduce stock
     for (const item of order.items) {
 
-        const product = await productModel.findById(item.product);
+        const product = await Product.findById(item.product);
 
         if (!product) {
             throw new Error(

@@ -29,7 +29,7 @@ const getCategoryBySlug = async (req, res) => {
             });
         }
 
-        const category = categoryModel.findOne({ slug, isActive: true });
+        const category = await categoryModel.findOne({ slug, isActive: true });
         
         if(!category) { 
             return res.status(404).json({

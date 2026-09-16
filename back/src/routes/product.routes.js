@@ -9,15 +9,15 @@ const {
 } = require("../controllers/products.controllers.js");
 const { requireAdmin } = require("../middleware/auth.js");
 
-router.get("/products", getProducts);
+router.get("/", getProducts);
 
-router.get("/products/:slug", getProductId);
+router.get("/:slug", getProductId);
 
-router.post("/admin/products",requireAdmin,createProduct);
+router.post("/admin",requireAdmin,createProduct);
 
-router.put("/admin/products/:slug",requireAdmin,updateProduct);
+router.put("/admin/:slug",requireAdmin,updateProduct);
 
-router.delete("/admin/products/:slug", requireAdmin, requireAdmin,deleteProduct);
+router.delete("/admin/:slug", requireAdmin, requireAdmin,deleteProduct);
 
 
 module.exports = router;

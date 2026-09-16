@@ -14,11 +14,11 @@ const app = express();
 app.use(express.json())
 app.use(morgan("dev"))
 
-app.use("/api/v1/payment", express.raw({ type: "application/json" }), paymentRouter)
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/categories", categoryRouter)
 app.use("/api/v1/products", productRoutes)
 app.use("/api/v1/orders", orderRouter )
 app.use("/api/v1/cart",cartRouter)
+app.use("/api/v1/payment", paymentRouter)
 
 module.exports = app;

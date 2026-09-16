@@ -72,6 +72,8 @@ const ordersSchema = new mongoose.Schema({
   notes: {
     type: String
   }
+},{
+  timestamps:true
 });
 
 

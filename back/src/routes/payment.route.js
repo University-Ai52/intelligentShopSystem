@@ -6,7 +6,8 @@ const { createPaymentIntent , stripeWebhook } = require("../controllers/payment.
 const paymentRouter = express.Router()
 
 paymentRouter.post("/create-intent", auth, createPaymentIntent)
-paymentRouter.post("/webhook", stripeWebhook)
+
+paymentRouter.post("/webhook", express.raw({ type: "application/json" }), stripeWebhook)
 
 
 module.exports = paymentRouter
