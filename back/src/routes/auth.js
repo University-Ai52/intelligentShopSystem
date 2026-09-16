@@ -9,10 +9,10 @@ const Router = require("express")
 const z = require("zod")
 const User = require("../models/user")
 const signToken = require("../lib/token")
-const {auth} = require("../middleware/auth")
+const { auth } = require("../middleware/auth")
 // this is files not exist 
-// const validate = require("../middleware/validate")
-// const ah = require("../middleware/errorHandler")
+const validate = require("../middleware/validate")
+const ah = require("../middleware/errorHandler")
 
 
 
