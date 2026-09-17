@@ -1,5 +1,5 @@
 // validate(schema, "body" | "query" | "params")
-exports.validate =  function (schema, where = "body") {
+const validate =  function (schema, where = "body") {
   return (req, res, next) => {
     const result = schema.safeParse(req[where]);
     if (!result.success) {
@@ -12,3 +12,5 @@ exports.validate =  function (schema, where = "body") {
     next();
   };
 }
+
+module.exports = { validate };

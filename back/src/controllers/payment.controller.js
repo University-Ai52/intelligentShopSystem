@@ -1,11 +1,10 @@
-require("dotenv").config()
 const stripe = require("../config/stripe");
 const mongoose = require("mongoose");
 
 const Order = require("../models/Orders");
 const Product = require("../models/product");
 
-exports.createPaymentIntent = async (req, res) => {
+const createPaymentIntent = async (req, res) => {
     try {
         const { orderId } = req.body;
 
@@ -72,7 +71,7 @@ exports.createPaymentIntent = async (req, res) => {
     }
 };
 
-exports.stripeWebhook = async (req, res) => {
+const stripeWebhook = async (req, res) => {
     const sig = req.headers["stripe-signature"];
 
     let event;
@@ -171,3 +170,5 @@ const handlePaymentSuccess = async (paymentIntent) => {
         await product.save();
     }
 };
+
+module.exports = { createPaymentIntent, stripeWebhook };

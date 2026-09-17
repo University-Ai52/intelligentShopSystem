@@ -1,9 +1,8 @@
-exports.notFound = function (_req, res) {
+const notFound = function (_req, res) {
   res.status(404).json({ message: "Not found" });
 }
 
-// eslint-disable-next-line no-unused-vars
-exports.errorHandler = function (err, _req, res, _next) {
+const errorHandler = function (err, _req, res, _next) {
   if (err.code === 11000) {
     const field = Object.keys(err.keyPattern || { value: 1 })[0];
     return res.status(409).json({ message: `${field} already exists` });
@@ -19,4 +18,7 @@ exports.errorHandler = function (err, _req, res, _next) {
 }
 
 // wrap async route handlers so thrown errors reach errorHandler
-exports.ah = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+const ah = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+
+module.exports = { ah, errorHandler, notFound };

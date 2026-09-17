@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const ordersModel = require("./../models/Orders.js");
 const cartModel = require("./../models/Cart.js");
-const productModel = require("./../models/product.js")
 
 const createOrder = async (req, res) => {
     try {
@@ -91,6 +90,7 @@ const getUserOrders = async (req, res) => {
             data: userOrders
         });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             message: "Internal Server Error"
@@ -134,7 +134,7 @@ const getUserOrderById = async (req, res) => {
 
 const getAllOrders = async (req, res) => {
     try {
-        const orders = await ordersModel.find();
+        const orders = await ordersModel.find().sort('-createdAt').populate('user', 'email firstName lastName');
 
         return res.status(200).json({
             success: true,
@@ -151,7 +151,7 @@ const getAllOrders = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
     try {
         const { id } = req.params;
-        const { status } = req.body;
+        const { status, trackingNumber } = req.body;
 
         if(!id) {
             return res.status(400).json({
@@ -179,8 +179,9 @@ const updateOrderStatus = async (req, res) => {
         }
 
         const updateOrder = await ordersModel.findOneAndUpdate({ _id: id }, {
-            status
-        }, { runValidators: true });
+            status,
+            trackingNumber: trackingNumber ?? null
+        }, { runValidators: true, new: true });
 
         if(!updateOrder) {
             return res.status(400).json({

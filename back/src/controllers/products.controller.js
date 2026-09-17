@@ -1,8 +1,18 @@
 const product = require("../models/product");
+const slugify = require("slugify");
 
 const createProduct = async (req, res) => {
   try {
-    const products = await product.create(req.body);
+    const data = req.body;
+    if (!data.name) {
+      return res.status(400).json({
+          message: "Product name is required"
+      });
+    }
+
+    const slug = slugify(data?.name);
+
+    const products = await product.create({...req.body, slug});
 
     res.status(201).json({
       success: true,

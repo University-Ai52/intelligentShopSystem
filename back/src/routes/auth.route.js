@@ -1,22 +1,12 @@
-// import{Router} from "express";
-// import{z} from "zod";
-// import User from "../models/User.js";
-// import { signToken } from "../lib/token.js";
-// import { auth } from "../middleware/auth.js";
-// import { validate } from "../middleware/validate.js";
-// import { ah } from "../middleware/errorHandler.js";
 const Router = require("express")
 const z = require("zod")
 const User = require("../models/user")
 const { signToken } = require("../lib/token")
 const { auth } = require("../middleware/auth")
-// this is files not exist 
 const { validate } = require("../middleware/validate")
 const { ah } = require("../middleware/errorHandler")
 
-
-
-const router=Router();
+const router= Router();
 const registerSchema=z.object({
     email:z.string().email(),
     password:z.string().min(6),
@@ -27,7 +17,7 @@ const registerSchema=z.object({
 
 const loginSchema=z.object({
     email:z.string().email(),
-    password:z.string().min(1),
+    password:z.string().min(6),
 });
 
 router.post("/register",validate(registerSchema),ah(async(req,res)=>{

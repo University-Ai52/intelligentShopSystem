@@ -7,9 +7,8 @@ const orderRouter = express.Router();
 orderRouter.post("/", auth, createOrder);
 orderRouter.get("/", auth, getUserOrders);
 orderRouter.get("/admin",auth, requireAdmin, getAllOrders);
-orderRouter.put("/admin",auth, requireAdmin, updateOrderStatus);
+orderRouter.put("/admin/:id",auth, requireAdmin, updateOrderStatus);
 
 orderRouter.get("/:id", auth, getUserOrderById);
-
 
 module.exports = orderRouter;

@@ -1,7 +1,7 @@
 const {verifyToken } = require("../lib/token.js")
 const User = require("../models/user.js")
 
-exports.auth =  async function (req,res,next){
+const auth =  async function (req,res,next){
     const header=req.headers.authorization||"";
     const token=header.startsWith("Bearer ")?header.slice(7):null;
     if(!token) return res.status(401).json({message:"Authentication required"});
@@ -16,7 +16,9 @@ exports.auth =  async function (req,res,next){
     }
 }
 
-exports.requireAdmin = function (req,res,next){
+const requireAdmin = function (req,res,next){
     if(req.user?.role!=="admin") return res.status(403).json({message:"Admin only"});
     next();
 }
+
+module.exports = { auth, requireAdmin };
