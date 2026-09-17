@@ -1,0 +1,181 @@
+form {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #f4f2eb;
+  border: 1px solid #c8c5bc;
+  box-sizing: border-box;
+}
+
+
+/* Header */
+
+.form-header {
+  border-bottom: 1px solid #aaa69c;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.form-header p {
+  margin: 0 0 8px;
+  color: #2454d6;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.form-header h1 {
+  margin: 0 0 8px;
+  font-family: Georgia, serif;
+  font-size: 36px;
+  color: #111;
+}
+
+.form-header span {
+  color: #555;
+  font-size: 14px;
+}
+
+
+/* Two columns */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 22px;
+}
+
+
+/* Form fields */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #111;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #ebe8df;
+  border: 1px solid #bdb9af;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #111;
+}
+
+.form-group input,
+.form-group select {
+  height: 45px;
+}
+
+.form-group textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+
+/* Focus */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2454d6;
+}
+
+
+/* Full width */
+
+.full-width {
+  margin-bottom: 22px;
+}
+
+
+/* Validation */
+
+.is-invalid {
+  border-color: #c62828 !important;
+}
+
+.error {
+  margin-top: 6px;
+  color: #c62828;
+  font-size: 12px;
+}
+
+
+/* Checkboxes */
+
+.options {
+  display: flex;
+  gap: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #c8c5bc;
+  margin-top: 10px;
+}
+
+.check-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.check-option input {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* Button */
+
+.submit-area {
+  border-top: 1px solid #c8c5bc;
+  padding-top: 25px;
+  margin-top: 5px;
+}
+
+.submit-area button {
+  width: 220px;
+  height: 50px;
+  border: none;
+  border-radius: 0;
+  background-color: #2855e8;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.submit-area button:hover {
+  background-color: #1d43bd;
+}
+
+.submit-area button:disabled {
+  background-color: #aaa;
+  color: #eee;
+  cursor: not-allowed;
+}
+

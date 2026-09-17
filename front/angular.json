@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "front": {
+    "project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -20,8 +20,10 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
               "src/styles.css"
@@ -55,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "front:build:production"
+              "buildTarget": "project:build:production"
             },
             "development": {
-              "buildTarget": "front:build:development"
+              "buildTarget": "project:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -1,0 +1,23 @@
+<div class="product-card" (click)="viewProduct()">
+
+    <div class="product-image">
+        <img [src]="product.images[0]" [alt]="product.name">
+    </div>
+
+    <div class="product-info">
+        <h3>{{ product.name }}</h3>
+
+        <p>{{ product.description }}</p>
+
+        <p class="price">{{ product.price }} EGP</p>
+
+        <p>Stock: {{ product.stock }}</p>
+
+        <button
+            type="button"
+            (click)="deleteProduct(); $event.stopPropagation()">
+            Delete
+        </button>
+    </div>
+
+</div>

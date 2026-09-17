@@ -1,0 +1,45 @@
+<div class="product-details">
+
+  <div class="product-image">
+    <img [src]="product.images[0]" [alt]="product.name">
+  </div>
+
+  <div class="product-info">
+
+    <p class="category">PRODUCT</p>
+
+    <h1>{{ product.name }}</h1>
+
+    <p class="description">
+      {{ product.description }}
+    </p>
+
+    <p class="price">
+      {{ product.price }} EGP
+    </p>
+
+    @if (product.compareAtPrice) {
+      <p class="old-price">
+        {{ product.compareAtPrice }} EGP
+      </p>
+    }
+
+    <p>
+      <strong>SKU:</strong> {{ product.sku }}
+    </p>
+
+    <p>
+      <strong>Stock:</strong> {{ product.stock }}
+    </p>
+
+    @if (product.tags.length > 0) {
+      <div class="tags">
+        @for (tag of product.tags; track tag) {
+          <span>{{ tag }}</span>
+        }
+      </div>
+    }
+
+  </div>
+
+</div>

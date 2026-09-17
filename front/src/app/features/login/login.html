@@ -1,0 +1,30 @@
+<div class="auth-page">
+  <div class="auth-info">
+    <div class="brand"><div class="brand-icon">🛒</div><span>E-Commerce</span></div>
+    <div class="info-content">
+      <h1>Welcome to <span>E-Commerce</span></h1>
+      <p>Discover amazing products, get the best deals, and shop with confidence. Your favorite items are just a click away.</p>
+      <div class="features">
+        <div class="feature"><div class="feature-icon">🚚</div><div><strong>Fast &amp; Reliable Delivery</strong><small>Get your orders delivered to your door</small></div></div>
+        <div class="feature"><div class="feature-icon">🛡️</div><div><strong>Secure Shopping</strong><small>Your data and payments are always safe</small></div></div>
+        <div class="feature"><div class="feature-icon">🏷️</div><div><strong>Best Prices</strong><small>Great quality at unbeatable prices</small></div></div>
+      </div>
+    </div>
+    <div class="copyright">© 2026 E-Commerce. All rights reserved.</div>
+  </div>
+  <div class="auth-container"><div class="auth-card">
+    <button class="theme-toggle" type="button" (click)="toggleTheme()">{{ isDarkMode ? '☀️' : '🌙' }}</button>
+    <div class="tabs"><button class="active" type="button">Login</button><button type="button" (click)="goToRegister()">Sign Up</button></div>
+    <div class="form-container">
+      <div class="form-header"><h2>Welcome Back 👋</h2><p>Please enter your details to sign in.</p></div>
+      <form (ngSubmit)="login()">
+        <div class="input-group"><label>Email</label><input type="email" [(ngModel)]="loginData.email" name="loginEmail" placeholder="Enter your email" required /></div>
+        <div class="input-group"><label>Password</label><input type="password" [(ngModel)]="loginData.password" name="loginPassword" placeholder="Enter your password" required /></div>
+        @if (errorMessage) { <div class="error-message">{{ errorMessage }}</div> }
+        @if (successMessage) { <div class="success-message">{{ successMessage }}</div> }
+        <button class="submit-btn" type="submit" [disabled]="loading">{{ loading ? 'Logging in...' : 'Login' }}</button>
+      </form>
+      <div class="switch-text">Don't have an account? <button type="button" (click)="goToRegister()">Sign Up</button></div>
+    </div>
+  </div></div>
+</div>

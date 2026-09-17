@@ -1,0 +1,207 @@
+<form (submit)="onSubmit($event)">
+
+  <div class="form-header">
+    <p>PRODUCT MANAGEMENT</p>
+    <h1>Add New Product</h1>
+    <span>Create a new product for the ibuy catalog</span>
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label for="name">Product Name</label>
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter product name..."
+        [formField]="productForm.name"
+        [class.is-invalid]="showError(productForm.name())"/>
+
+      @if (showError(productForm.name())) {
+        <small class="error">
+          {{ productForm.name().errors()[0]?.message }}
+        </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="sku">SKU</label>
+
+      <input
+        type="text"
+        id="sku"
+        placeholder="Enter product SKU..."
+        [formField]="productForm.sku"
+        [class.is-invalid]="showError(productForm.sku())"/>
+
+      @if (showError(productForm.sku())) {
+        <small class="error">
+          {{ productForm.sku().errors()[0]?.message }}
+        </small>
+      }
+    </div>
+
+  </div>
+
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label for="slug">Slug</label>
+
+      <input
+        type="text"
+        id="slug"
+        placeholder="Enter product slug..."
+        [formField]="productForm.slug"/>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+
+      <select
+        id="category"
+        [formField]="productForm.category"
+        [class.is-invalid]="showError(productForm.category())">
+
+        <option value="">Select category</option>
+        <option value="sports">Sports</option>
+        <option value="electronics">Electronics</option>
+
+      </select>
+
+      @if (showError(productForm.category())) {
+        <small class="error">
+          {{ productForm.category().errors()[0]?.message }}
+        </small>
+      }
+    </div>
+
+  </div>
+
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label for="price">Price</label>
+
+      <input
+        type="number"
+        id="price"
+        placeholder="0.00"
+        [formField]="productForm.price"
+        [class.is-invalid]="showError(productForm.price())"/>
+
+      @if (showError(productForm.price())) {
+        <small class="error">
+          {{ productForm.price().errors()[0]?.message }}
+        </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="compareAtPrice">Compare At Price</label>
+
+      <input
+        type="number"
+        id="compareAtPrice"
+        placeholder="0.00"
+        [formField]="productForm.compareAtPrice"/>
+    </div>
+
+  </div>
+
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label for="stock">Stock</label>
+
+      <input
+        type="number"
+        id="stock"
+        placeholder="0"
+        [formField]="productForm.stock"
+        [class.is-invalid]="showError(productForm.stock())"/>
+
+      @if (showError(productForm.stock())) {
+        <small class="error">
+          {{ productForm.stock().errors()[0]?.message }}
+        </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="images">Images</label>
+
+      <input
+        type="text"
+        id="images"
+        placeholder="Enter image URL..."
+        [formField]="productForm.images"/>
+    </div>
+
+  </div>
+
+
+  <div class="form-group full-width">
+    <label for="tags">Tags</label>
+
+    <input
+      type="text"
+      id="tags"
+      placeholder="Enter product tags..."
+      [formField]="productForm.tags"/>
+  </div>
+
+
+  <div class="form-group full-width">
+    <label for="description">Description</label>
+
+    <textarea
+      id="description"
+      placeholder="Enter product description..."
+      [formField]="productForm.description"
+      [class.is-invalid]="showError(productForm.description())"></textarea>
+
+    @if (showError(productForm.description())) {
+      <small class="error">
+        {{ productForm.description().errors()[0]?.message }}
+      </small>
+    }
+  </div>
+
+
+  <div class="options">
+
+    <label class="check-option">
+      <input
+        type="checkbox"
+        [formField]="productForm.isActive"/>
+      <span>Active</span>
+    </label>
+
+    <label class="check-option">
+      <input
+        type="checkbox"
+        [formField]="productForm.isFeatured"/>
+      <span>Featured</span>
+    </label>
+
+  </div>
+  @if (!product()) {
+    <div class="submit-area">
+
+      <button
+        type="submit"
+        [disabled]="productForm().submitting() || productForm().invalid()">
+
+        {{ productForm().submitting() ? 'Saving...' : 'ADD PRODUCT →' }}
+
+      </button>
+
+    </div>
+  }
+
+</form>

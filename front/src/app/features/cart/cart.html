@@ -1,0 +1,156 @@
+<main class="max-w-[1180px] mx-auto px-5">
+
+  <!-- ================= PAGE TITLE ================= -->
+  <section class="pt-8 pb-5 border-b border-[#C9C6BA]">
+    <h1 class="f-serif text-[34px] md:text-[42px] font-bold leading-tight text-[#141414]">Shopping Cart &amp; Checkout Process</h1>
+    <p class="text-[13.5px] text-[#55524A] mt-2">Review your items and complete your order seamlessly</p>
+  </section>
+
+  <!-- ================= CHECKOUT LAYOUT ================= -->
+  <div class="mt-8 pb-20 grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 items-start">
+
+    <!-- ============ LEFT COLUMN ============ -->
+    <div>
+
+      <!-- 1. ORDER ITEMS -->
+      <section>
+        <h2 class="f-mono text-[15px] font-bold tracking-[0.08em] text-[#141414]">1.&nbsp; ORDER ITEMS ({{ itemCount }} ITEMS)</h2>
+
+        <div class="mt-5 space-y-4">
+          @if (cart?.items?.length) {
+            @for (cartItem of cart?.items; track cartItem.product._id) {
+              <article class="bg-[#DEDBD0] p-4 flex items-center gap-5">
+                <div class="w-[88px] h-[88px] bg-[#C9C5B8] flex items-center justify-center shrink-0 overflow-hidden">
+                  <img [src]="cartItem.product.images?.[0] || 'https://placehold.co/88x88/DEDBD0/141414?text=Product'" [alt]="cartItem.product.name" class="w-full h-full object-cover" />
+                </div>
+
+                <div class="flex-1 min-w-0">
+                  <h3 class="text-[15.5px] font-medium text-[#141414]">{{ cartItem.product.name }}</h3>
+                  <p class="text-[12.5px] text-[#77746A] mt-[3px]">{{ cartItem.product.slug }}</p>
+                  <p class="f-mono text-[12px] text-[#55524A] mt-[6px]">Qty: {{ cartItem.quantity }}</p>
+                </div>
+
+                <span class="f-mono text-[19px] font-bold text-[#2952E3] shrink-0">${{ (cartItem.quantity * cartItem.priceAtAdd).toFixed(2) }}</span>
+              </article>
+            }
+          } @else {
+            <div class="mt-4 rounded border border-dashed border-[#C9C6BA] bg-[#F7F5F1] p-6 text-[14px] text-[#55524A]">
+              Your cart is empty.
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- 2. SHIPPING & DELIVERY ADDRESS -->
+      <section class="mt-10">
+        <div class="pb-3 border-b border-[#C9C6BA]">
+          <h2 class="f-mono text-[15px] font-bold tracking-[0.08em] text-[#141414]">2.&nbsp; SHIPPING &amp; DELIVERY ADDRESS</h2>
+        </div>
+
+        <form class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+          <div>
+            <label class="f-mono block text-[12.5px] font-bold text-[#141414] mb-2">Full Name</label>
+            <input type="text" [value]="fullName"
+              class="f-arabic w-full bg-[#EFEDE4] border border-[#C9C6BA] px-3 py-[9px] text-[15px] text-[#141414] focus:outline-none focus:border-[#2952E3] transition-colors" />
+          </div>
+          <div>
+            <label class="f-mono block text-[12.5px] font-bold text-[#141414] mb-2">Phone Number</label>
+            <input type="tel" [value]="user?.phone || ''"
+              class="w-full bg-[#EFEDE4] border border-[#C9C6BA] px-3 py-[9px] text-[13.5px] text-[#141414] focus:outline-none focus:border-[#2952E3] transition-colors" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="f-mono block text-[12.5px] font-bold text-[#141414] mb-2">Street Address</label>
+            <input type="text" value="15 El-Tahrir Street, Cairo"
+              class="w-full bg-[#EFEDE4] border border-[#C9C6BA] px-3 py-[9px] text-[13.5px] text-[#141414] focus:outline-none focus:border-[#2952E3] transition-colors" />
+          </div>
+          <div>
+            <label class="f-mono block text-[12.5px] font-bold text-[#141414] mb-2">City / Governorate</label>
+            <input type="text" value="Cairo, Egypt"
+              class="w-full bg-[#EFEDE4] border border-[#C9C6BA] px-3 py-[9px] text-[13.5px] text-[#141414] focus:outline-none focus:border-[#2952E3] transition-colors" />
+          </div>
+          <div>
+            <label class="f-mono block text-[12.5px] font-bold text-[#141414] mb-2">Postal Code</label>
+            <input type="text" value="11511"
+              class="w-full bg-[#EFEDE4] border border-[#C9C6BA] px-3 py-[9px] text-[13.5px] text-[#141414] focus:outline-none focus:border-[#2952E3] transition-colors" />
+          </div>
+        </form>
+      </section>
+
+      <!-- 3. PAYMENT METHOD -->
+      <section class="mt-10">
+        <div class="pb-3 border-b border-[#C9C6BA]">
+          <h2 class="f-mono text-[15px] font-bold tracking-[0.08em] text-[#141414]">3.&nbsp; PAYMENT METHOD</h2>
+        </div>
+
+        <div class="mt-6 space-y-4">
+          <!-- Option 1 (selected) -->
+          <label class="flex items-center gap-3 cursor-pointer select-none w-fit">
+            <input type="radio" name="payment" class="peer sr-only" checked />
+            <span class="hidden peer-checked:inline f-mono text-[13.5px] font-bold text-[#141414]">[●]</span>
+            <span class="inline peer-checked:hidden f-mono text-[13.5px] font-bold text-[#55524A]">[O]</span>
+            <span class="text-[13.5px] text-[#242424]">Credit / Debit Card (Visa, MasterCard)</span>
+          </label>
+          <!-- Option 2 -->
+          <label class="flex items-center gap-3 cursor-pointer select-none w-fit">
+            <input type="radio" name="payment" class="peer sr-only" />
+            <span class="hidden peer-checked:inline f-mono text-[13.5px] font-bold text-[#141414]">[●]</span>
+            <span class="inline peer-checked:hidden f-mono text-[13.5px] font-bold text-[#55524A]">[O]</span>
+            <span class="text-[13.5px] text-[#242424]">Cash on Delivery (COD)</span>
+          </label>
+          <!-- Option 3 -->
+          <label class="flex items-center gap-3 cursor-pointer select-none w-fit">
+            <input type="radio" name="payment" class="peer sr-only" />
+            <span class="hidden peer-checked:inline f-mono text-[13.5px] font-bold text-[#141414]">[●]</span>
+            <span class="inline peer-checked:hidden f-mono text-[13.5px] font-bold text-[#55524A]">[O]</span>
+            <span class="text-[13.5px] text-[#242424]">Mobile Wallet (Vodafone Cash, Fawry)</span>
+          </label>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============ RIGHT COLUMN : ORDER SUMMARY ============ -->
+    <aside class="bg-[#141414] text-white px-6 py-6 lg:sticky lg:top-[80px]">
+      <h2 class="f-mono text-[17px] font-bold tracking-[0.1em] pb-4 border-b border-[#3A3A3A]">ORDER SUMMARY</h2>
+
+      <div class="mt-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-[13px] text-[#C9C9C9]">Subtotal</span>
+          <span class="f-mono text-[13.5px] text-white">${{ subtotal.toFixed(2) }}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[13px] text-[#C9C9C9]">Discount (Smart Offer {{ discountPercent }}%)</span>
+          <span class="f-mono text-[13.5px] text-white">-&nbsp;&nbsp;${{ discount.toFixed(2) }}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[13px] text-[#C9C9C9]">Estimated Shipping (Egypt)</span>
+          <span class="f-mono text-[13.5px] text-white">${{ shipping.toFixed(2) }}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-[13px] text-[#C9C9C9]">Taxes &amp; VAT (14%)</span>
+          <span class="f-mono text-[13.5px] text-white">${{ taxes.toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <!-- Total -->
+      <div class="mt-7 pt-5 border-t border-[#3A3A3A] flex items-center justify-between">
+        <span class="text-[14px] font-medium text-white">TOTAL DUE</span>
+        <span class="f-mono text-[26px] font-bold text-[#2F63F5]">${{ total.toFixed(2) }}</span>
+      </div>
+
+      <!-- Promo -->
+      <div class="mt-5 flex gap-3">
+        <input type="text" value="Promo: DEPI2026" readonly
+          class="flex-1 min-w-0 bg-[#1C1C1C] border border-[#3A3A3A] px-3 py-[9px] f-mono text-[12px] text-[#BDBDBD] focus:outline-none focus:border-[#2952E3] transition-colors" />
+        <span class="flex items-center bg-[#1C1C1C] border border-[#3A3A3A] px-3 f-mono text-[11px] font-bold tracking-[0.08em] text-[#28A745] whitespace-nowrap">APPLIED ✓</span>
+      </div>
+
+      <!-- Pay Button -->
+      <button class="mt-5 w-full bg-[#2952E3] hover:bg-[#1E40C9] transition-colors f-mono text-[13px] font-bold tracking-[0.12em] text-white py-[14px]">
+        CONFIRM &amp; PAY NOW →
+      </button>
+    </aside>
+
+  </div>
+
+</main>
